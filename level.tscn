@@ -218,10 +218,7 @@ sources/0 = SubResource("TileSetAtlasSource_smg5c")
 [node name="Node2D" type="Node2D"]
 script = ExtResource("1_sv2tl")
 
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
-
-[node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
-visible = false
+[node name="ColorRect" type="ColorRect" parent="."]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -230,7 +227,7 @@ grow_vertical = 2
 color = Color(0.109804, 0.231373, 0.184314, 1)
 
 [node name="Gun" parent="." instance=ExtResource("1_sgjly")]
-position = Vector2(491, 287)
+position = Vector2(575, 358)
 metadata/_edit_group_ = true
 
 [node name="Camera2D" type="Camera2D" parent="Gun"]

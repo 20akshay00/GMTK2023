@@ -4,13 +4,13 @@ extends RigidBody2D
 @export var rotation_strength_low : float = 100.
 @export var rotation_strength_high : float = 300.
 @export var hop_strength : float = 300.
-@export var max_angular_velocity : float = 15.
+@export var max_angular_velocity : float = 10.
 
 @onready var bullet = $Bullet
 @onready var smtimer = $SlowMoTimer
 @onready var cooldowntimer = $SlowMoCooldown
 
-var can_slowmo = false
+var can_slowmo = true
 var can_shoot = true
 var is_touching = false
 var rotation_strength = rotation_strength_high
@@ -36,11 +36,12 @@ func _process(_delta: float) -> void:
 	elif Input.is_action_just_pressed("hop"):
 		apply_central_impulse(Vector2.UP * hop_strength)
 
-	if (Input.is_action_just_pressed("rotate_ccw") or Input.is_action_just_pressed("rotate_cw")) and not is_touching: 
+	if (Input.is_action_just_pressed("rotate_ccw") or Input.is_action_just_pressed("rotate_cw")) and not is_touching and can_slowmo: 
 		Engine.time_scale = 0.2
 		rotation_strength = rotation_strength_low
 		$Camera2D/UI.slowmo_effect(0.15, 0.5)
-		smtimer.start()
+		if smtimer.time_left == 0:
+			smtimer.start()
 	elif Input.is_action_just_released("rotate_ccw") or Input.is_action_just_released("rotate_cw"):
 		Engine.time_scale = 1.0
 		rotation_strength = rotation_strength_high
@@ -48,7 +49,14 @@ func _process(_delta: float) -> void:
 		
 func _on_slow_mo_timer_timeout() -> void:
 	Engine.time_scale = 1.0
+	rotation_strength = rotation_strength_high
+	$Camera2D/UI.slowmo_effect(0.3, 1.)
+		
+	cooldowntimer.start()
 	can_slowmo = false
+
+func _on_slow_mo_cooldown_timeout() -> void:
+	can_slowmo = true
 
 func _on_body_entered(body: Node) -> void:
 	is_touching = true
