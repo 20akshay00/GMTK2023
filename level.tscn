@@ -1,0 +1,69 @@
+[gd_scene load_steps=8 format=3 uid="uid://dg0n1c2tpuvms"]
+
+[ext_resource type="PackedScene" uid="uid://ccgt7cs60865p" path="res://gun.tscn" id="1_sgjly"]
+[ext_resource type="Script" path="res://level.gd" id="1_sv2tl"]
+[ext_resource type="PackedScene" uid="uid://dqcwumghs61c1" path="res://wall.tscn" id="2_5ucwj"]
+[ext_resource type="Script" path="res://UI.gd" id="3_dv07e"]
+[ext_resource type="Shader" path="res://slowmo.gdshader" id="3_wes4q"]
+[ext_resource type="PackedScene" uid="uid://hn71jw1xy36n" path="res://enemy.tscn" id="3_xhbd3"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_med6d"]
+shader = ExtResource("3_wes4q")
+shader_parameter/pos = null
+shader_parameter/radius = 0.01
+shader_parameter/fade = 1.0
+shader_parameter/aspect_ratio = 0.6
+shader_parameter/blur = 0.5
+
+[node name="Node2D" type="Node2D"]
+script = ExtResource("1_sv2tl")
+
+[node name="Gun" parent="." instance=ExtResource("1_sgjly")]
+position = Vector2(491, 287)
+
+[node name="Camera2D" type="Camera2D" parent="Gun"]
+
+[node name="UI" type="CanvasLayer" parent="Gun/Camera2D"]
+script = ExtResource("3_dv07e")
+
+[node name="SlowMoFilter" type="ColorRect" parent="Gun/Camera2D/UI"]
+material = SubResource("ShaderMaterial_med6d")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="Wall2" parent="." instance=ExtResource("2_5ucwj")]
+position = Vector2(1124, 610)
+rotation = 1.5708
+
+[node name="Wall" parent="." instance=ExtResource("2_5ucwj")]
+position = Vector2(554, 644)
+
+[node name="Wall3" parent="." instance=ExtResource("2_5ucwj")]
+position = Vector2(28, 603)
+rotation = -1.5708
+
+[node name="Enemy4" parent="." instance=ExtResource("3_xhbd3")]
+position = Vector2(177, 168)
+metadata/_edit_group_ = true
+
+[node name="Enemy3" parent="." instance=ExtResource("3_xhbd3")]
+position = Vector2(1002, 318)
+metadata/_edit_group_ = true
+
+[node name="Enemy" parent="." instance=ExtResource("3_xhbd3")]
+position = Vector2(321, 554)
+metadata/_edit_group_ = true
+
+[node name="Enemy2" parent="." instance=ExtResource("3_xhbd3")]
+position = Vector2(804, 558)
+metadata/_edit_group_ = true
+
+[node name="Label" type="Label" parent="."]
+offset_left = 65.0
+offset_top = 17.0
+offset_right = 255.0
+offset_bottom = 94.0

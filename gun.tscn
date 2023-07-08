@@ -1,0 +1,30 @@
+[gd_scene load_steps=4 format=3 uid="uid://ccgt7cs60865p"]
+
+[ext_resource type="Texture2D" uid="uid://badtu0a6sqlu3" path="res://Art/gun.png" id="1_25q33"]
+[ext_resource type="Script" path="res://gun.gd" id="1_bo3j0"]
+[ext_resource type="PackedScene" uid="uid://bn0dj4efotgc5" path="res://bullet.tscn" id="3_08tko"]
+
+[node name="Gun" type="RigidBody2D"]
+script = ExtResource("1_bo3j0")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.153125, 0.153125)
+texture = ExtResource("1_25q33")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+polygon = PackedVector2Array(-51, -32, -51, -22, -47, -14, -10, -13, -12, 0, -7, 5, 12, 5, 16, 2, 26, 30, 24, 35, 49, 36, 51, 22, 38, -6, 42, -11, 51, -11, 42, -37, 26, -32, -41, -32, -43, -36, -49, -36)
+
+[node name="Marker2D" type="Marker2D" parent="."]
+position = Vector2(-50, -23)
+
+[node name="Bullet" parent="." instance=ExtResource("3_08tko")]
+position = Vector2(-49, -24)
+
+[node name="SlowMoTimer" type="Timer" parent="."]
+wait_time = 3.0
+one_shot = true
+
+[node name="SlowMoCooldown" type="Timer" parent="."]
+
+[connection signal="timeout" from="SlowMoTimer" to="." method="_on_slow_mo_timer_timeout"]
+[connection signal="timeout" from="SlowMoCooldown" to="." method="_on_slow_mo_cooldown_timeout"]

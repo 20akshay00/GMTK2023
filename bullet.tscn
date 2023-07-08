@@ -1,0 +1,14 @@
+[gd_scene load_steps=2 format=3 uid="uid://bn0dj4efotgc5"]
+
+[ext_resource type="Script" path="res://bullet.gd" id="1_0vpnv"]
+
+[node name="Bullet" type="RayCast2D"]
+rotation = 1.5708
+target_position = Vector2(0, 1000)
+collision_mask = 2
+script = ExtResource("1_0vpnv")
+
+[node name="Line2D" type="Line2D" parent="."]
+points = PackedVector2Array(0, 0, 0, 1000)
+width = 1.0
+default_color = Color(0.0980392, 0.6, 0.847059, 1)
