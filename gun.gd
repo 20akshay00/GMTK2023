@@ -36,12 +36,12 @@ func _process(_delta: float) -> void:
 	elif Input.is_action_just_pressed("hop"):
 		apply_central_impulse(Vector2.UP * hop_strength)
 
-	if (Input.is_action_just_pressed("rotate_ccw") or Input.is_action_just_pressed("rotate_cw")) and not is_touching and can_slowmo: 
+	if (Input.is_action_just_pressed("rotate_ccw") or Input.is_action_just_pressed("rotate_cw")) and not is_touching: 
 		Engine.time_scale = 0.2
 		rotation_strength = rotation_strength_low
 		$Camera2D/UI.slowmo_effect(0.15, 0.5)
-		if smtimer.time_left == 0:
-			smtimer.start()
+#		if smtimer.time_left == 0:
+#			smtimer.start()
 	elif Input.is_action_just_released("rotate_ccw") or Input.is_action_just_released("rotate_cw"):
 		Engine.time_scale = 1.0
 		rotation_strength = rotation_strength_high
