@@ -6,6 +6,9 @@ extends RigidBody2D
 @export var hop_strength : float = 300.
 @export var max_angular_velocity : float = 10.
 
+@export var audio_speed_high : float = 1.
+@export var audio_speed_low : float = 0.8
+
 @onready var bullet = $Bullet
 @onready var smtimer = $SlowMoTimer
 @onready var cooldowntimer = $SlowMoCooldown
@@ -25,6 +28,8 @@ func _process(_delta: float) -> void:
 		bullet.shoot()
 		can_shoot = false
 		$ShootTimer.start()
+		$ShootSFX.play()
+		
 		if bullet.is_colliding():
 			bullet.get_collider().hit()
 	elif Input.is_action_pressed("rotate_cw"):
@@ -40,17 +45,20 @@ func _process(_delta: float) -> void:
 		Engine.time_scale = 0.2
 		rotation_strength = rotation_strength_low
 		$Camera2D/UI.slowmo_effect(0.15, 0.5)
+		AudioServer.playback_speed_scale = audio_speed_low
 #		if smtimer.time_left == 0:
 #			smtimer.start()
 	elif Input.is_action_just_released("rotate_ccw") or Input.is_action_just_released("rotate_cw"):
 		Engine.time_scale = 1.0
 		rotation_strength = rotation_strength_high
 		$Camera2D/UI.slowmo_effect(0.3, 1.)
-		
+		AudioServer.playback_speed_scale = audio_speed_high
+				
 func _on_slow_mo_timer_timeout() -> void:
 	Engine.time_scale = 1.0
 	rotation_strength = rotation_strength_high
 	$Camera2D/UI.slowmo_effect(0.3, 1.)
+	AudioServer.playback_speed_scale = audio_speed_high
 		
 	cooldowntimer.start()
 	can_slowmo = false

@@ -1,8 +1,10 @@
-[gd_scene load_steps=4 format=3 uid="uid://ccgt7cs60865p"]
+[gd_scene load_steps=6 format=3 uid="uid://ccgt7cs60865p"]
 
 [ext_resource type="Script" path="res://gun.gd" id="1_bo3j0"]
 [ext_resource type="Texture2D" uid="uid://b5vlq1m0ayqii" path="res://Art/gun_sprite.png" id="2_io4ov"]
 [ext_resource type="PackedScene" uid="uid://bn0dj4efotgc5" path="res://bullet.tscn" id="3_08tko"]
+[ext_resource type="AudioStream" uid="uid://bsdvwhx21bwsx" path="res://Sounds/shoot.wav" id="4_6nua3"]
+[ext_resource type="AudioStream" uid="uid://c3p230trfeunm" path="res://Sounds/hit.wav" id="5_0etrk"]
 
 [node name="Gun" type="RigidBody2D"]
 max_contacts_reported = 1
@@ -35,6 +37,12 @@ polygon = PackedVector2Array(-50, -38, 51.0054, -37.6996, 51, 35, -7, 35, -7, 21
 [node name="ShootTimer" type="Timer" parent="."]
 wait_time = 0.1
 one_shot = true
+
+[node name="ShootSFX" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_6nua3")
+
+[node name="HitSFX" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_0etrk")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="body_exited" from="." to="." method="_on_body_exited"]
