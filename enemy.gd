@@ -25,6 +25,6 @@ func hit() -> void:
 	else:
 		for i in range(4):
 			tween.tween_property(sprite, "material:shader_parameter/mix_value", blink_high, 0.1)
-			tween.tween_property(sprite, "material:shader_parameter/mix_value", 0.1, 0.1)
+			tween.tween_property(sprite, "material:shader_parameter/mix_value", 0., 0.1)
 		
 

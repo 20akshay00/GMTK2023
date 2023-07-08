@@ -5,6 +5,8 @@
 [ext_resource type="PackedScene" uid="uid://bn0dj4efotgc5" path="res://bullet.tscn" id="3_08tko"]
 
 [node name="Gun" type="RigidBody2D"]
+max_contacts_reported = 1
+contact_monitor = true
 script = ExtResource("1_bo3j0")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
@@ -29,5 +31,12 @@ position = Vector2(1, 0)
 scale = Vector2(0.450933, 0.450933)
 polygon = PackedVector2Array(-50, -38, 51.0054, -37.6996, 51, 35, -7, 35, -7, 21, -21, 21, -21, 5, -50, 5)
 
+[node name="ShootTimer" type="Timer" parent="."]
+wait_time = 0.1
+one_shot = true
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_exited" from="." to="." method="_on_body_exited"]
 [connection signal="timeout" from="SlowMoTimer" to="." method="_on_slow_mo_timer_timeout"]
 [connection signal="timeout" from="SlowMoCooldown" to="." method="_on_slow_mo_cooldown_timeout"]
+[connection signal="timeout" from="ShootTimer" to="." method="_on_shoot_timer_timeout"]
