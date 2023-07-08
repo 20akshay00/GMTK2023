@@ -1,0 +1,61 @@
+[gd_scene load_steps=9 format=3 uid="uid://cenvnrt1p4eco"]
+
+[ext_resource type="PackedScene" uid="uid://hn71jw1xy36n" path="res://enemy.tscn" id="1_x0210"]
+[ext_resource type="Texture2D" uid="uid://bc0geykvqej17" path="res://Art/flyer.png" id="2_h6qnh"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_n7bdy"]
+radius = 30.2655
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xcbvn"]
+atlas = ExtResource("2_h6qnh")
+region = Rect2(0, 0, 9, 9)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_w3ok2"]
+atlas = ExtResource("2_h6qnh")
+region = Rect2(9, 0, 9, 9)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_r6nwk"]
+atlas = ExtResource("2_h6qnh")
+region = Rect2(18, 0, 9, 9)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_uj68t"]
+atlas = ExtResource("2_h6qnh")
+region = Rect2(27, 0, 9, 9)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_6anr2"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xcbvn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_w3ok2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_r6nwk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_uj68t")
+}],
+"loop": true,
+"name": &"default",
+"speed": 10.0
+}, {
+"frames": [],
+"loop": true,
+"name": &"move",
+"speed": 5.0
+}]
+
+[node name="FlyingEnemy" instance=ExtResource("1_x0210")]
+
+[node name="CollisionShape2D" parent="." index="0"]
+position = Vector2(1, 0)
+shape = SubResource("CircleShape2D_n7bdy")
+
+[node name="AnimatedSprite2D" parent="." index="2"]
+texture_filter = 1
+position = Vector2(-4, -1)
+scale = Vector2(6, 6)
+sprite_frames = SubResource("SpriteFrames_6anr2")
+autoplay = "default"

@@ -7,8 +7,9 @@ rotation = 1.5708
 target_position = Vector2(0, 1000)
 collision_mask = 2
 script = ExtResource("1_0vpnv")
+max_width = 13.0
 
 [node name="Line2D" type="Line2D" parent="."]
 points = PackedVector2Array(0, 0, 0, 1000)
 width = 1.0
-default_color = Color(0.0980392, 0.6, 0.847059, 1)
+default_color = Color(0.0980392, 0.529412, 0.176471, 1)

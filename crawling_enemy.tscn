@@ -1,0 +1,55 @@
+[gd_scene load_steps=9 format=3 uid="uid://bspic37rnvsif"]
+
+[ext_resource type="PackedScene" uid="uid://hn71jw1xy36n" path="res://enemy.tscn" id="1_ii2rj"]
+[ext_resource type="Texture2D" uid="uid://djvrme7d6och7" path="res://Art/crawler.png" id="2_8oyvp"]
+[ext_resource type="Shader" path="res://white_overlay.gdshader" id="2_34pe6"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_p1pjw"]
+radius = 16.0
+height = 48.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_w1xc0"]
+shader = ExtResource("2_34pe6")
+shader_parameter/mix_value = null
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hi7t3"]
+atlas = ExtResource("2_8oyvp")
+region = Rect2(0, 0, 7, 5)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cxnap"]
+atlas = ExtResource("2_8oyvp")
+region = Rect2(7, 0, 7, 5)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_r5iku"]
+animations = [{
+"frames": [],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hi7t3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cxnap")
+}],
+"loop": true,
+"name": &"move",
+"speed": 4.0
+}]
+
+[node name="CrawlingEnemy" instance=ExtResource("1_ii2rj")]
+
+[node name="CollisionShape2D" parent="." index="0"]
+position = Vector2(0, -1)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_p1pjw")
+
+[node name="AnimatedSprite2D" parent="." index="2"]
+texture_filter = 1
+material = SubResource("ShaderMaterial_w1xc0")
+scale = Vector2(6, 6)
+sprite_frames = SubResource("SpriteFrames_r5iku")
+animation = &"move"
+autoplay = "move"

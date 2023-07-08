@@ -3,7 +3,7 @@ extends RigidBody2D
 @export var recoil_strength : float = 1000.
 @export var rotation_strength : float = 100.
 @export var hop_strength : float = 600.
-@export var max_angular_velocity : float = 20.
+@export var max_angular_velocity : float = 15.
 
 @onready var bullet = $Bullet
 @onready var smtimer = $SlowMoTimer
@@ -16,12 +16,12 @@ func _ready() -> void:
 	pass # Replace with function body.
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	if Input.is_action_just_pressed("shoot"):
 		apply_central_impulse(Vector2(cos(rotation), sin(rotation)) * recoil_strength)
 		bullet.shoot()
 		if bullet.is_colliding():
-			bullet.get_collider().queue_free() 
+			bullet.get_collider().hit()
 	elif Input.is_action_pressed("rotate_cw"):
 		if abs(angular_velocity) < max_angular_velocity:
 			apply_torque_impulse(rotation_strength)
@@ -33,7 +33,7 @@ func _process(delta: float) -> void:
 
 	if Input.is_action_just_pressed("rotate_ccw") or Input.is_action_just_pressed("rotate_cw"): 
 		Engine.time_scale = 0.2
-		$Camera2D/UI.slowmo_effect(0.3, 0.5)
+		$Camera2D/UI.slowmo_effect(0.15, 0.5)
 		smtimer.start()
 	elif Input.is_action_just_released("rotate_ccw") or Input.is_action_just_released("rotate_cw"):
 		Engine.time_scale = 1.0
