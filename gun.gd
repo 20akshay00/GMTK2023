@@ -3,6 +3,7 @@ extends RigidBody2D
 signal ammo_changed
 signal slowmo_started
 signal slowmo_ended
+signal enemy_killed
 
 @export var recoil_strength : float = 1000.
 @export var rotation_strength_low : float = 100.
@@ -45,6 +46,7 @@ func _process(_delta: float) -> void:
 			var enemy = bullet.get_collider()
 			if enemy.health == 1:
 				Globals.ammo += enemy.ammo_boost
+				enemy_killed.emit()
 				ammo_changed.emit()
 			enemy.hit()
 			

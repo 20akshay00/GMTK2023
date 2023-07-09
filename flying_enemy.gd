@@ -1,8 +1,8 @@
 extends CharacterBody2D
 
 @export var blink_high : float = 0.9
-@export var health : int = 2
-@export var ammo_boost : int = 6
+@export var health : int = 1
+@export var ammo_boost : int = 10
 
 @export var prob_flip : float = 0.005
 @export var prob_shift : float = 0.01

@@ -1,0 +1,6 @@
+[gd_resource type="FontVariation" load_steps=2 format=3 uid="uid://cfw0e5m55j04h"]
+
+[ext_resource type="FontFile" uid="uid://dvovjj5wbq4fx" path="res://Fonts/Kenney_Future_Square.ttf" id="1_fda2v"]
+
+[resource]
+base_font = ExtResource("1_fda2v")

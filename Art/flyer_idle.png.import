@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://badtu0a6sqlu3"
-path="res://.godot/imported/gun.png-bb2ef40db0ce5994639bc9048afd5cfd.ctex"
+uid="uid://cmdhrn7rht7ry"
+path="res://.godot/imported/flyer_idle.png-07ea8f9c00ea7b5f21315f2beffc19cc.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Art/gun.png"
-dest_files=["res://.godot/imported/gun.png-bb2ef40db0ce5994639bc9048afd5cfd.ctex"]
+source_file="res://Art/flyer_idle.png"
+dest_files=["res://.godot/imported/flyer_idle.png-07ea8f9c00ea7b5f21315f2beffc19cc.ctex"]
 
 [params]
 
