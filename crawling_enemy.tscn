@@ -68,7 +68,7 @@ scale_curve = SubResource("CurveTexture_vw5kt")
 [node name="CrawlingEnemy" type="CharacterBody2D"]
 material = SubResource("ShaderMaterial_4656f")
 collision_layer = 3
-collision_mask = 3
+collision_mask = 2
 script = ExtResource("2_2xtmm")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

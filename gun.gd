@@ -42,7 +42,11 @@ func _process(_delta: float) -> void:
 		$ShootSFX.play()
 		
 		if bullet.is_colliding() and bullet.get_collider().has_method("hit"):
-			bullet.get_collider().hit()
+			var enemy = bullet.get_collider()
+			if enemy.health == 1:
+				Globals.ammo += enemy.ammo_boost
+				ammo_changed.emit()
+			enemy.hit()
 			
 		if Globals.ammo == 0:
 			var tween = get_tree().create_tween()

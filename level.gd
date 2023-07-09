@@ -8,7 +8,10 @@ func _ready() -> void:
 	tween.tween_property(GameMusic, "volume_db", 0, 1)
 	
 	Globals.ammo = Globals.ammo_init
-
+	
+	$CrawlingSpawner.spawn(4)
+	$FlyingSpawner.spawn(4)
+	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta: float) -> void:
 	pass
