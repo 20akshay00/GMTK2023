@@ -11,13 +11,14 @@ config_version=5
 [application]
 
 config/name="GMTK2023"
-run/main_scene="res://level.tscn"
+run/main_scene="res://menu.tscn"
 config/features=PackedStringArray("4.0", "Mobile")
 config/icon="res://icon.svg"
 
 [autoload]
 
 Globals="*res://Globals/globals.gd"
+TransitionLayer="*res://transition_layer.tscn"
 
 [display]
 
@@ -54,4 +55,4 @@ hop={
 
 [rendering]
 
-renderer/rendering_method="mobile"
+renderer/rendering_method="gl_compatibility"
