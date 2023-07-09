@@ -1,3 +1,3 @@
 extends Node
 
-var ammo : int = 15
+var ammo : int = 40

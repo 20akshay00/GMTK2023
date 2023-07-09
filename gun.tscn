@@ -7,7 +7,7 @@
 [ext_resource type="AudioStream" uid="uid://c3p230trfeunm" path="res://Sounds/hit.wav" id="5_0etrk"]
 
 [node name="Gun" type="RigidBody2D"]
-max_contacts_reported = 1
+max_contacts_reported = 3
 contact_monitor = true
 script = ExtResource("1_bo3j0")
 
