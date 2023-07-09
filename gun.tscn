@@ -21,6 +21,7 @@ flip_h = true
 [node name="Bullet" parent="." instance=ExtResource("3_08tko")]
 position = Vector2(-26, -7)
 scale = Vector2(1.04424, 1)
+min_width = 0.0
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
 position = Vector2(1, 0)
