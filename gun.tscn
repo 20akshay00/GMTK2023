@@ -10,7 +10,6 @@
 max_contacts_reported = 3
 contact_monitor = true
 script = ExtResource("1_bo3j0")
-slow_motion_cooldown = 0.3
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture_filter = 1

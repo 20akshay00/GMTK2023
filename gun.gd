@@ -39,8 +39,9 @@ func _process(_delta: float) -> void:
 		$ShootTimer.start()
 		$ShootSFX.play()
 		
-		if bullet.is_colliding():
+		if bullet.is_colliding() and bullet.get_collider().has_method("hit"):
 			bullet.get_collider().hit()
+			
 	elif Input.is_action_pressed("rotate_cw"):
 		if abs(angular_velocity) < max_angular_velocity:
 			apply_torque_impulse(rotation_strength)

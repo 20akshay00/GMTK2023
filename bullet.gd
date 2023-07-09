@@ -15,10 +15,11 @@ func _physics_process(_delta: float) -> void:
 	if is_colliding():
 		$Line2D.points[1] =  to_local(get_collision_point())		
 		target = get_collider()
-		target.get_node("Target").visible = true
+		if target.has_node("Target"):
+			target.get_node("Target").visible = true
 	else:
 		$Line2D.points[1] = target_position
-		if target != null:
+		if target != null and target.has_node("Target"):
 			target.get_node("Target").visible = false
 			
 func shoot() -> void:
