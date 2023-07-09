@@ -47,7 +47,7 @@ animations = [{
 _data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
 point_count = 2
 
-[sub_resource type="CurveTexture" id="CurveTexture_vw5kt"]
+[sub_resource type="CurveTexture" id="CurveTexture_v6ods"]
 curve = SubResource("Curve_51cry")
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_riwxt"]
@@ -63,7 +63,7 @@ damping_min = 50.0
 damping_max = 50.0
 scale_min = 3.0
 scale_max = 8.0
-scale_curve = SubResource("CurveTexture_vw5kt")
+scale_curve = SubResource("CurveTexture_v6ods")
 
 [node name="CrawlingEnemy" type="CharacterBody2D"]
 material = SubResource("ShaderMaterial_4656f")
@@ -95,3 +95,6 @@ amount = 20
 process_material = SubResource("ParticleProcessMaterial_riwxt")
 lifetime = 0.6
 one_shot = true
+
+[node name="RayCast2D" type="RayCast2D" parent="."]
+position = Vector2(18, 15)

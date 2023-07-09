@@ -14,12 +14,13 @@ extends CharacterBody2D
 var dir = 1
 
 func _ready() -> void:
+	randomize()
 	sprite.material.set_shader_parameter("mix_value", 0.)
 		
 func _process(_delta: float) -> void:
 	if health <= 0 and not $GPUParticles2D.emitting and sprite.modulate.a == 0.:
 		queue_free()
-	
+			
 	if dir == -1:
 		sprite.flip_h = true
 	else:
@@ -38,8 +39,6 @@ func _physics_process(delta : float) -> void:
 	if collision != null:
 		dir *= -1
 		
-	
-	
 func hit() -> void:
 	health -= 1
 	var tween = get_tree().create_tween()

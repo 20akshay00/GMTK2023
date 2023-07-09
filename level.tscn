@@ -1,11 +1,10 @@
-[gd_scene load_steps=17 format=3 uid="uid://c0oeekfje51vb"]
+[gd_scene load_steps=16 format=3 uid="uid://c0oeekfje51vb"]
 
 [ext_resource type="PackedScene" uid="uid://ccgt7cs60865p" path="res://gun.tscn" id="1_sgjly"]
 [ext_resource type="Script" path="res://level.gd" id="1_sv2tl"]
 [ext_resource type="Texture2D" uid="uid://c4272ejrgdxi" path="res://Art/bg.jpg" id="2_d88qy"]
 [ext_resource type="Shader" path="res://slowmo.gdshader" id="3_wes4q"]
 [ext_resource type="Script" path="res://SlowMoCanvas.gd" id="4_ky6pg"]
-[ext_resource type="PackedScene" uid="uid://dltdcfwnvoulq" path="res://flying_enemy.tscn" id="7_05irb"]
 [ext_resource type="Texture2D" uid="uid://cr67pbagmjvei" path="res://Art/walls_light.png" id="7_8vn1y"]
 [ext_resource type="Script" path="res://UI.gd" id="10_8yhhq"]
 [ext_resource type="Texture2D" uid="uid://bvda5t32skqh2" path="res://Art/laser.png" id="10_60igf"]
@@ -258,9 +257,6 @@ layer_0/tile_data = PackedInt32Array(786432, 65536, 2, 786433, 65536, 2, 786434,
 
 [node name="Enemies" type="Node2D" parent="."]
 
-[node name="FlyingEnemy" parent="Enemies" instance=ExtResource("7_05irb")]
-position = Vector2(405, 394)
-
 [node name="UI" type="CanvasLayer" parent="."]
 script = ExtResource("10_8yhhq")
 
@@ -329,22 +325,25 @@ one_shot = true
 script = ExtResource("13_eloi8")
 
 [node name="Marker2D" type="Marker2D" parent="CrawlingSpawner"]
-position = Vector2(-430, -222)
+position = Vector2(-430, -191)
 
 [node name="Marker2D2" type="Marker2D" parent="CrawlingSpawner"]
-position = Vector2(704, -357)
+position = Vector2(704, -339)
 
 [node name="Marker2D3" type="Marker2D" parent="CrawlingSpawner"]
-position = Vector2(1470, -229)
+position = Vector2(1470, -194)
 
 [node name="Marker2D4" type="Marker2D" parent="CrawlingSpawner"]
-position = Vector2(400, -358)
+position = Vector2(400, -337)
 
 [node name="Marker2D5" type="Marker2D" parent="CrawlingSpawner"]
-position = Vector2(-427, 497)
+position = Vector2(-427, 524)
 
 [node name="Marker2D6" type="Marker2D" parent="CrawlingSpawner"]
-position = Vector2(1465, 493)
+position = Vector2(1465, 525)
+
+[node name="Marker2D7" type="Marker2D" parent="CrawlingSpawner"]
+position = Vector2(558, 529)
 
 [node name="Timer" type="Timer" parent="CrawlingSpawner"]
 wait_time = 2.0
@@ -361,7 +360,7 @@ position = Vector2(851, 256)
 position = Vector2(-349, 265)
 
 [node name="Marker2D3" type="Marker2D" parent="FlyingSpawner"]
-position = Vector2(1083, -528)
+position = Vector2(1053, -528)
 
 [node name="Marker2D4" type="Marker2D" parent="FlyingSpawner"]
 position = Vector2(-487, -514)
