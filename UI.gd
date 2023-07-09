@@ -1,7 +1,10 @@
 extends CanvasLayer
 
 @onready var laser_label = $LaserCounter/VBoxContainer/Label
-# Called when the node enters the scene tree for the first time.
+# Called when the node enters the scene tree for the first time.\
+func _ready() -> void:
+	update_laser_text()
+
 func update_laser_text() -> void:
 	laser_label.text = str("x ", Globals.ammo)
 

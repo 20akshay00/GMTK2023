@@ -42,6 +42,12 @@ func _process(_delta: float) -> void:
 		if bullet.is_colliding() and bullet.get_collider().has_method("hit"):
 			bullet.get_collider().hit()
 			
+		if Globals.ammo == 0:
+			var tween = get_tree().create_tween()
+			tween.tween_property($Camera2D, "zoom", Vector2(4., 4.), 4)
+			tween.finished.connect(game_over)
+			
+	
 	elif Input.is_action_pressed("rotate_cw"):
 		if abs(angular_velocity) < max_angular_velocity:
 			apply_torque_impulse(rotation_strength)
@@ -57,6 +63,7 @@ func _process(_delta: float) -> void:
 	elif (Input.is_action_just_released("rotate_ccw") or Input.is_action_just_released("rotate_cw")) and Engine.time_scale == 0.2:
 		end_slowmo()
 		smtimer.stop()
+		
 	
 func start_slowmo() -> void:
 	Engine.time_scale = 0.2
@@ -89,3 +96,6 @@ func _on_slow_motion_timeout() -> void:
 	
 func _on_slow_motion_cooldown_timeout() -> void:
 	can_slowmo = true
+
+func game_over() -> void:
+	TransitionLayer.change_scene("res://game_over.tscn")

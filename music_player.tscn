@@ -1,10 +1,16 @@
-[gd_scene load_steps=3 format=3 uid="uid://cr8b836uo2nyt"]
+[gd_scene load_steps=4 format=3 uid="uid://cr8b836uo2nyt"]
 
 [ext_resource type="Script" path="res://music_player.gd" id="1_5lvlv"]
 [ext_resource type="AudioStream" uid="uid://dxd81kmtsios4" path="res://Sounds/menu_theme.wav" id="2_d2gdf"]
+[ext_resource type="AudioStream" uid="uid://di12qpxu8thhx" path="res://Sounds/idle_theme.wav" id="3_2xveq"]
 
 [node name="MusicPlayer" type="Node"]
 script = ExtResource("1_5lvlv")
 
 [node name="MenuMusic" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("2_d2gdf")
+volume_db = -80.0
+
+[node name="GameMusic" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_2xveq")
+volume_db = -80.0
