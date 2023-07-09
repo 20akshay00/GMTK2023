@@ -1,6 +1,8 @@
 extends RigidBody2D
 
 signal ammo_changed
+signal slowmo_started
+signal slowmo_ended
 
 @export var recoil_strength : float = 1000.
 @export var rotation_strength_low : float = 100.
@@ -67,12 +69,14 @@ func _process(_delta: float) -> void:
 	
 func start_slowmo() -> void:
 	Engine.time_scale = 0.2
+	slowmo_started.emit()
 	rotation_strength = rotation_strength_low
 	$Camera2D/SlowMoCanvas.slowmo_effect(0.15, 0.5)
 	AudioServer.playback_speed_scale = audio_speed_low
 	smtimer.start(slow_motion_limit)
 	
 func end_slowmo() -> void:
+	slowmo_ended.emit()
 	Engine.time_scale = 1.0
 	rotation_strength = rotation_strength_high
 	$Camera2D/SlowMoCanvas.slowmo_effect(0.3, 1.)
