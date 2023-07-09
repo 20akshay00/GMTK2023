@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://cr8b836uo2nyt"]
+
+[ext_resource type="Script" path="res://music_player.gd" id="1_5lvlv"]
+[ext_resource type="AudioStream" uid="uid://dxd81kmtsios4" path="res://Sounds/menu_theme.wav" id="2_d2gdf"]
+
+[node name="MusicPlayer" type="Node"]
+script = ExtResource("1_5lvlv")
+
+[node name="MenuMusic" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_d2gdf")

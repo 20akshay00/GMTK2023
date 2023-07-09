@@ -58,8 +58,6 @@ func _process(_delta: float) -> void:
 		end_slowmo()
 		smtimer.stop()
 	
-	print(smctimer.time_left)
-	
 func start_slowmo() -> void:
 	Engine.time_scale = 0.2
 	rotation_strength = rotation_strength_low

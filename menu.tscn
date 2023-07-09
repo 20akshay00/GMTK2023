@@ -1,7 +1,6 @@
-[gd_scene load_steps=3 format=3 uid="uid://bqeof8pxp3j2d"]
+[gd_scene load_steps=2 format=3 uid="uid://bqeof8pxp3j2d"]
 
 [ext_resource type="Script" path="res://Menu.gd" id="1_p10mw"]
-[ext_resource type="AudioStream" uid="uid://dxd81kmtsios4" path="res://Sounds/menu_theme.wav" id="2_b1rho"]
 
 [node name="Menu" type="Control"]
 layout_mode = 3
@@ -20,10 +19,6 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 color = Color(0.160784, 0.309804, 0.286275, 1)
-
-[node name="MenuMusic" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("2_b1rho")
-volume_db = -80.0
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 1
