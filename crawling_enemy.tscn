@@ -1,55 +1,97 @@
-[gd_scene load_steps=9 format=3 uid="uid://bspic37rnvsif"]
+[gd_scene load_steps=14 format=3 uid="uid://hn71jw1xy36n"]
 
-[ext_resource type="PackedScene" uid="uid://hn71jw1xy36n" path="res://enemy.tscn" id="1_ii2rj"]
-[ext_resource type="Texture2D" uid="uid://djvrme7d6och7" path="res://Art/crawler.png" id="2_8oyvp"]
-[ext_resource type="Shader" path="res://white_overlay.gdshader" id="2_34pe6"]
+[ext_resource type="Shader" path="res://white_overlay.gdshader" id="1_uvgg8"]
+[ext_resource type="Script" path="res://crawling_enemy.gd" id="2_2xtmm"]
+[ext_resource type="Texture2D" uid="uid://dc4t4dfjwlroy" path="res://Art/target.png" id="3_861uf"]
+[ext_resource type="Texture2D" uid="uid://djvrme7d6och7" path="res://Art/crawler.png" id="4_efmvs"]
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_p1pjw"]
-radius = 16.0
-height = 48.0
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_w1xc0"]
-shader = ExtResource("2_34pe6")
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_4656f"]
+shader = ExtResource("1_uvgg8")
 shader_parameter/mix_value = 0.0
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_hi7t3"]
-atlas = ExtResource("2_8oyvp")
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_yqbem"]
+size = Vector2(41, 32)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_xfb58"]
+shader = ExtResource("1_uvgg8")
+shader_parameter/mix_value = 0.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ad7k1"]
+atlas = ExtResource("4_efmvs")
 region = Rect2(0, 0, 7, 5)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_cxnap"]
-atlas = ExtResource("2_8oyvp")
+[sub_resource type="AtlasTexture" id="AtlasTexture_xnqbl"]
+atlas = ExtResource("4_efmvs")
 region = Rect2(7, 0, 7, 5)
 
-[sub_resource type="SpriteFrames" id="SpriteFrames_r5iku"]
+[sub_resource type="SpriteFrames" id="SpriteFrames_2dvxp"]
 animations = [{
-"frames": [],
-"loop": true,
-"name": &"default",
-"speed": 5.0
-}, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_hi7t3")
+"texture": SubResource("AtlasTexture_ad7k1")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_cxnap")
+"texture": SubResource("AtlasTexture_xnqbl")
 }],
 "loop": true,
 "name": &"move",
 "speed": 4.0
+}, {
+"frames": [],
+"loop": true,
+"name": &"new_animation",
+"speed": 5.0
 }]
 
-[node name="CrawlingEnemy" instance=ExtResource("1_ii2rj")]
+[sub_resource type="Curve" id="Curve_51cry"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
 
-[node name="CollisionShape2D" parent="." index="0"]
-position = Vector2(0, -1)
-rotation = 1.5708
-shape = SubResource("CapsuleShape2D_p1pjw")
+[sub_resource type="CurveTexture" id="CurveTexture_vw5kt"]
+curve = SubResource("Curve_51cry")
 
-[node name="AnimatedSprite2D" parent="." index="2"]
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_riwxt"]
+lifetime_randomness = 0.2
+particle_flag_disable_z = true
+spread = 180.0
+gravity = Vector3(0, 0, 0)
+initial_velocity_min = 50.0
+initial_velocity_max = 200.0
+orbit_velocity_min = 0.0
+orbit_velocity_max = 0.0
+damping_min = 50.0
+damping_max = 50.0
+scale_min = 3.0
+scale_max = 8.0
+scale_curve = SubResource("CurveTexture_vw5kt")
+
+[node name="CrawlingEnemy" type="CharacterBody2D"]
+material = SubResource("ShaderMaterial_4656f")
+collision_layer = 3
+collision_mask = 3
+script = ExtResource("2_2xtmm")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-0.5, -2)
+shape = SubResource("RectangleShape2D_yqbem")
+
+[node name="Target" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(1.90735e-06, 1)
+scale = Vector2(1.25, 1.24512)
+texture = ExtResource("3_861uf")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
-material = SubResource("ShaderMaterial_w1xc0")
+material = SubResource("ShaderMaterial_xfb58")
 scale = Vector2(6, 6)
-sprite_frames = SubResource("SpriteFrames_r5iku")
+sprite_frames = SubResource("SpriteFrames_2dvxp")
 animation = &"move"
 autoplay = "move"
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
+emitting = false
+amount = 20
+process_material = SubResource("ParticleProcessMaterial_riwxt")
+lifetime = 0.6
+one_shot = true

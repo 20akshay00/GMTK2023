@@ -1,5 +1,7 @@
 extends CharacterBody2D
 
+class_name Enemy
+
 @export var blink_high : float = 0.9
 @export var health : int = 2
 

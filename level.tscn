@@ -5,9 +5,9 @@
 [ext_resource type="Texture2D" uid="uid://c4272ejrgdxi" path="res://Art/bg.jpg" id="2_d88qy"]
 [ext_resource type="Shader" path="res://slowmo.gdshader" id="3_wes4q"]
 [ext_resource type="Script" path="res://SlowMoCanvas.gd" id="4_ky6pg"]
-[ext_resource type="PackedScene" uid="uid://cenvnrt1p4eco" path="res://flying_enemy.tscn" id="6_x8tpr"]
+[ext_resource type="PackedScene" uid="uid://dltdcfwnvoulq" path="res://flying_enemy.tscn" id="7_05irb"]
 [ext_resource type="Texture2D" uid="uid://cr67pbagmjvei" path="res://Art/walls_light.png" id="7_8vn1y"]
-[ext_resource type="PackedScene" uid="uid://bspic37rnvsif" path="res://crawling_enemy.tscn" id="7_y6jxb"]
+[ext_resource type="PackedScene" uid="uid://hn71jw1xy36n" path="res://crawling_enemy.tscn" id="8_c8gb3"]
 [ext_resource type="Script" path="res://UI.gd" id="10_8yhhq"]
 [ext_resource type="Texture2D" uid="uid://bvda5t32skqh2" path="res://Art/laser.png" id="10_60igf"]
 [ext_resource type="Texture2D" uid="uid://oyq4xudconm4" path="res://Art/ring.png" id="11_fyyul"]
@@ -256,11 +256,11 @@ layer_0/tile_data = PackedInt32Array(786432, 65536, 2, 786433, 65536, 2, 786434,
 
 [node name="Enemies" type="Node2D" parent="."]
 
-[node name="FlyingEnemy" parent="Enemies" instance=ExtResource("6_x8tpr")]
-position = Vector2(163, 377)
+[node name="FlyingEnemy" parent="Enemies" instance=ExtResource("7_05irb")]
+position = Vector2(291, 264)
 
-[node name="CrawlingEnemy" parent="Enemies" instance=ExtResource("7_y6jxb")]
-position = Vector2(442, 513)
+[node name="CrawlingEnemy" parent="Enemies" instance=ExtResource("8_c8gb3")]
+position = Vector2(469, 517)
 
 [node name="UI" type="CanvasLayer" parent="."]
 script = ExtResource("10_8yhhq")

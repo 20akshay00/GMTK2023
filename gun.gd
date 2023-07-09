@@ -85,11 +85,11 @@ func end_slowmo() -> void:
 	can_slowmo = false
 	smctimer.start(slow_motion_cooldown)
 			
-func _on_body_entered(body: Node) -> void:
+func _on_body_entered(_body: Node) -> void:
 	is_touching = true
 	num_hops = max_num_hops
 	
-func _on_body_exited(body: Node) -> void:
+func _on_body_exited(_body: Node) -> void:
 	is_touching = false
 
 func _on_shoot_timer_timeout() -> void:

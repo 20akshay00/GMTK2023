@@ -3,7 +3,6 @@ extends CanvasLayer
 @onready var laser_label = $LaserCounter/VBoxContainer/Label
 @onready var timerbar = $TextureProgressBar
 @onready var timer = $Timer
-@onready var cdtimer = $CooldownTimer
 
 # Called when the node enters the scene tree for the first time.\
 func _ready() -> void:

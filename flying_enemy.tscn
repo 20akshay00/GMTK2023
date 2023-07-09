@@ -1,61 +1,112 @@
-[gd_scene load_steps=9 format=3 uid="uid://cenvnrt1p4eco"]
+[gd_scene load_steps=16 format=3 uid="uid://dltdcfwnvoulq"]
 
-[ext_resource type="PackedScene" uid="uid://hn71jw1xy36n" path="res://enemy.tscn" id="1_x0210"]
-[ext_resource type="Texture2D" uid="uid://bc0geykvqej17" path="res://Art/flyer.png" id="2_h6qnh"]
+[ext_resource type="Shader" path="res://white_overlay.gdshader" id="1_71sqr"]
+[ext_resource type="Script" path="res://enemy.gd" id="2_12vy2"]
+[ext_resource type="Texture2D" uid="uid://dc4t4dfjwlroy" path="res://Art/target.png" id="3_vc1wc"]
+[ext_resource type="Texture2D" uid="uid://bc0geykvqej17" path="res://Art/flyer.png" id="4_n8ipo"]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_n7bdy"]
-radius = 30.2655
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_4656f"]
+shader = ExtResource("1_71sqr")
+shader_parameter/mix_value = 0.0
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_xcbvn"]
-atlas = ExtResource("2_h6qnh")
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_dowy1"]
+radius = 25.0
+height = 68.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_xfb58"]
+shader = ExtResource("1_71sqr")
+shader_parameter/mix_value = 0.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6lxcu"]
+atlas = ExtResource("4_n8ipo")
 region = Rect2(0, 0, 9, 9)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_w3ok2"]
-atlas = ExtResource("2_h6qnh")
+[sub_resource type="AtlasTexture" id="AtlasTexture_0xsyy"]
+atlas = ExtResource("4_n8ipo")
 region = Rect2(9, 0, 9, 9)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_r6nwk"]
-atlas = ExtResource("2_h6qnh")
+[sub_resource type="AtlasTexture" id="AtlasTexture_4x4op"]
+atlas = ExtResource("4_n8ipo")
 region = Rect2(18, 0, 9, 9)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_uj68t"]
-atlas = ExtResource("2_h6qnh")
+[sub_resource type="AtlasTexture" id="AtlasTexture_0fmel"]
+atlas = ExtResource("4_n8ipo")
 region = Rect2(27, 0, 9, 9)
 
-[sub_resource type="SpriteFrames" id="SpriteFrames_6anr2"]
+[sub_resource type="SpriteFrames" id="SpriteFrames_qrl7b"]
 animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_xcbvn")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_w3ok2")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_r6nwk")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_uj68t")
-}],
-"loop": true,
-"name": &"default",
-"speed": 10.0
-}, {
 "frames": [],
 "loop": true,
-"name": &"move",
+"name": &"default",
 "speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6lxcu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0xsyy")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4x4op")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0fmel")
+}],
+"loop": true,
+"name": &"move",
+"speed": 6.0
 }]
 
-[node name="FlyingEnemy" instance=ExtResource("1_x0210")]
+[sub_resource type="Curve" id="Curve_51cry"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
 
-[node name="CollisionShape2D" parent="." index="0"]
-position = Vector2(1, 0)
-shape = SubResource("CircleShape2D_n7bdy")
+[sub_resource type="CurveTexture" id="CurveTexture_vw5kt"]
+curve = SubResource("Curve_51cry")
 
-[node name="AnimatedSprite2D" parent="." index="2"]
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_riwxt"]
+lifetime_randomness = 0.2
+particle_flag_disable_z = true
+spread = 180.0
+gravity = Vector3(0, 0, 0)
+initial_velocity_min = 50.0
+initial_velocity_max = 200.0
+orbit_velocity_min = 0.0
+orbit_velocity_max = 0.0
+damping_min = 50.0
+damping_max = 50.0
+scale_min = 3.0
+scale_max = 8.0
+scale_curve = SubResource("CurveTexture_vw5kt")
+
+[node name="FlyingEnemy" type="CharacterBody2D"]
+material = SubResource("ShaderMaterial_4656f")
+collision_layer = 3
+collision_mask = 3
+script = ExtResource("2_12vy2")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_dowy1")
+
+[node name="Target" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(1.90735e-06, 1)
+scale = Vector2(1.25, 1.24512)
+texture = ExtResource("3_vc1wc")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
-position = Vector2(-4, -1)
+material = SubResource("ShaderMaterial_xfb58")
 scale = Vector2(6, 6)
-sprite_frames = SubResource("SpriteFrames_6anr2")
-autoplay = "default"
+sprite_frames = SubResource("SpriteFrames_qrl7b")
+animation = &"move"
+autoplay = "move"
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
+emitting = false
+amount = 20
+process_material = SubResource("ParticleProcessMaterial_riwxt")
+lifetime = 0.6
+one_shot = true
