@@ -1,14 +1,16 @@
-[gd_scene load_steps=13 format=3 uid="uid://dg0n1c2tpuvms"]
+[gd_scene load_steps=15 format=3 uid="uid://c0oeekfje51vb"]
 
 [ext_resource type="PackedScene" uid="uid://ccgt7cs60865p" path="res://gun.tscn" id="1_sgjly"]
 [ext_resource type="Script" path="res://level.gd" id="1_sv2tl"]
 [ext_resource type="Texture2D" uid="uid://c4272ejrgdxi" path="res://Art/bg.jpg" id="2_d88qy"]
-[ext_resource type="Script" path="res://UI.gd" id="3_dv07e"]
 [ext_resource type="Shader" path="res://slowmo.gdshader" id="3_wes4q"]
+[ext_resource type="Script" path="res://SlowMoCanvas.gd" id="4_ky6pg"]
 [ext_resource type="PackedScene" uid="uid://cenvnrt1p4eco" path="res://flying_enemy.tscn" id="6_x8tpr"]
 [ext_resource type="Texture2D" uid="uid://cr67pbagmjvei" path="res://Art/walls_light.png" id="7_8vn1y"]
 [ext_resource type="PackedScene" uid="uid://bspic37rnvsif" path="res://crawling_enemy.tscn" id="7_y6jxb"]
 [ext_resource type="AudioStream" uid="uid://di12qpxu8thhx" path="res://Sounds/idle_theme.wav" id="8_bl6mx"]
+[ext_resource type="Script" path="res://UI.gd" id="10_8yhhq"]
+[ext_resource type="Texture2D" uid="uid://bvda5t32skqh2" path="res://Art/laser.png" id="10_60igf"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_med6d"]
 shader = ExtResource("3_wes4q")
@@ -233,10 +235,10 @@ metadata/_edit_group_ = true
 [node name="Camera2D" type="Camera2D" parent="Gun"]
 metadata/_edit_group_ = true
 
-[node name="UI" type="CanvasLayer" parent="Gun/Camera2D"]
-script = ExtResource("3_dv07e")
+[node name="SlowMoCanvas" type="CanvasLayer" parent="Gun/Camera2D"]
+script = ExtResource("4_ky6pg")
 
-[node name="SlowMoFilter" type="ColorRect" parent="Gun/Camera2D/UI"]
+[node name="SlowMoFilter" type="ColorRect" parent="Gun/Camera2D/SlowMoCanvas"]
 material = SubResource("ShaderMaterial_med6d")
 anchors_preset = 15
 anchor_right = 1.0
@@ -261,3 +263,38 @@ position = Vector2(337, 561)
 
 [node name="BackgroundMusic" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("8_bl6mx")
+
+[node name="UI" type="CanvasLayer" parent="."]
+script = ExtResource("10_8yhhq")
+
+[node name="LaserCounter" type="Control" parent="UI"]
+layout_mode = 3
+anchor_left = 0.03
+anchor_top = 0.888
+anchor_right = 0.095
+anchor_bottom = 0.95
+offset_top = 0.175903
+offset_right = -0.320015
+grow_vertical = 0
+
+[node name="VBoxContainer" type="HBoxContainer" parent="UI/LaserCounter"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 0.912
+anchor_bottom = 1.0
+offset_right = -27.9987
+
+[node name="TextureRect" type="TextureRect" parent="UI/LaserCounter/VBoxContainer"]
+layout_mode = 2
+texture = ExtResource("10_60igf")
+expand_mode = 2
+
+[node name="Label" type="Label" parent="UI/LaserCounter/VBoxContainer"]
+texture_filter = 1
+layout_mode = 2
+text = "x 15
+"
+horizontal_alignment = 1
+vertical_alignment = 2
+
+[connection signal="ammo_changed" from="Gun" to="UI" method="_on_gun_ammo_changed"]

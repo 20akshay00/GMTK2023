@@ -6,7 +6,7 @@
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_4656f"]
 shader = ExtResource("1_71sqr")
-shader_parameter/mix_value = null
+shader_parameter/mix_value = 0.0
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_xfb58"]
 shader = ExtResource("1_71sqr")

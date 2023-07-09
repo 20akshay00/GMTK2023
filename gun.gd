@@ -1,5 +1,7 @@
 extends RigidBody2D
 
+signal ammo_changed
+
 @export var recoil_strength : float = 1000.
 @export var rotation_strength_low : float = 100.
 @export var rotation_strength_high : float = 300.
@@ -8,8 +10,6 @@ extends RigidBody2D
 
 @export var audio_speed_high : float = 1.
 @export var audio_speed_low : float = 0.8
-
-@export var ammo : int = 15
 
 @onready var bullet = $Bullet
 
@@ -23,10 +23,11 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta: float) -> void:
-	if Input.is_action_just_pressed("shoot") and can_shoot and ammo > 0:
+	if Input.is_action_just_pressed("shoot") and can_shoot and Globals.ammo > 0:
 		apply_central_impulse(Vector2(cos(rotation), sin(rotation)) * recoil_strength)
 		bullet.shoot()
-		ammo -= 1
+		Globals.ammo -= 1
+		ammo_changed.emit()
 		can_shoot = false
 		$ShootTimer.start()
 		$ShootSFX.play()
@@ -45,13 +46,13 @@ func _process(_delta: float) -> void:
 	if (Input.is_action_just_pressed("rotate_ccw") or Input.is_action_just_pressed("rotate_cw")) and not is_touching: 
 		Engine.time_scale = 0.2
 		rotation_strength = rotation_strength_low
-		$Camera2D/UI.slowmo_effect(0.15, 0.5)
+		$Camera2D/SlowMoCanvas.slowmo_effect(0.15, 0.5)
 		AudioServer.playback_speed_scale = audio_speed_low
 
 	elif Input.is_action_just_released("rotate_ccw") or Input.is_action_just_released("rotate_cw"):
 		Engine.time_scale = 1.0
 		rotation_strength = rotation_strength_high
-		$Camera2D/UI.slowmo_effect(0.3, 1.)
+		$Camera2D/SlowMoCanvas.slowmo_effect(0.3, 1.)
 		AudioServer.playback_speed_scale = audio_speed_high
 
 func _on_body_entered(body: Node) -> void:

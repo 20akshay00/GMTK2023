@@ -10,7 +10,7 @@ height = 48.0
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_w1xc0"]
 shader = ExtResource("2_34pe6")
-shader_parameter/mix_value = null
+shader_parameter/mix_value = 0.0
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_hi7t3"]
 atlas = ExtResource("2_8oyvp")
