@@ -27,14 +27,13 @@ color = Color(0.160784, 0.309804, 0.286275, 1)
 [node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.359
-anchor_top = 0.656
-anchor_right = 0.67
-anchor_bottom = 0.656
-offset_left = -81.0
+anchor_left = 0.795
+anchor_top = 0.947
+anchor_right = 0.88
+anchor_bottom = 0.947
+offset_left = -162.0
 offset_top = -107.0
-offset_right = 81.0
-grow_horizontal = 2
+grow_horizontal = 0
 grow_vertical = 0
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
@@ -71,7 +70,6 @@ theme_override_font_sizes/font_size = 38
 text = "Untitled Gun Game"
 
 [node name="Controls" type="Label" parent="."]
-visible = false
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.108
@@ -90,7 +88,6 @@ D - Rotate cw
 S - Shoot/Left mouse"
 
 [node name="Gun" type="TextureRect" parent="."]
-visible = false
 texture_filter = 1
 layout_mode = 1
 anchors_preset = -1
@@ -106,7 +103,6 @@ scale = Vector2(2, 2)
 texture = ExtResource("2_mlewj")
 
 [node name="Intro" type="Label" parent="."]
-visible = false
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.119
@@ -123,7 +119,6 @@ you are the weapon"
 horizontal_alignment = 1
 
 [node name="Instructions" type="Label" parent="."]
-visible = false
 layout_mode = 0
 offset_left = 795.0
 offset_top = 198.0
@@ -163,7 +158,6 @@ offset_bottom = 0.0199966
 texture = ExtResource("4_0bkbu")
 
 [node name="Death" type="Label" parent="."]
-visible = false
 layout_mode = 0
 offset_left = 719.0
 offset_top = 390.0
