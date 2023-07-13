@@ -22,10 +22,7 @@ func generate_wave():
 	$FlyingSpawner.spawn(crawling_enemy)
 	
 	var tween = get_tree().create_tween()
-	tween.tween_property($UI/WaveLabel, "text",  str("Wave ", Globals.wave), 2)
+	tween.tween_property($UI/WaveLabel, "text",  str("Wave ", Globals.wave), 1)
 	
-func _process(_delta : float):
-	if $Enemies.get_children().size() == 0:
-		generate_wave()
-		
-
+func _on_enemies_enemies_cleared() -> void:
+	generate_wave()

@@ -17,6 +17,7 @@ func _ready() -> void:
 		
 func _process(_delta: float) -> void:
 	if health <= 0 and not $GPUParticles2D.emitting and sprite.modulate.a == 0.:
+		get_parent()._check_if_empty()
 		queue_free()
 
 	if dir == -1:

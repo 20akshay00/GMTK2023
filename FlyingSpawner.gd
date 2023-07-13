@@ -9,7 +9,6 @@ func spawn(num_spawns : int) -> void:
 		var pos : Vector2 = spawners[randi() % spawners.size()].position
 		var enemy = enemy_scene.instantiate()
 		enemy.position = pos
-		add_child(enemy)
 		get_parent().get_node("Enemies").add_child(enemy)
 		
 		$Timer.start()
