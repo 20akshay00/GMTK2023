@@ -5,11 +5,12 @@ var crawling_enemy = 1
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	var GameMusic = MusicPlayer.get_node("GameMusic")
-	GameMusic.play() 
-	var tween = get_tree().create_tween()
-	tween.tween_property(GameMusic, "volume_db", 0, 1)
+	#GameMusic.play() 
+	#var tween = get_tree().create_tween()
+	#tween.tween_property(GameMusic, "volume_db", 0, 1)
 	
 	Globals.ammo = Globals.ammo_init
+	$Gun.ammo_changed.emit()
 	
 	$CrawlingSpawner.spawn(flying_enemy)
 	$FlyingSpawner.spawn(crawling_enemy)

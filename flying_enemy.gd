@@ -17,11 +17,7 @@ func _ready() -> void:
 	randomize()
 	sprite.material.set_shader_parameter("mix_value", 0.)
 		
-func _process(_delta: float) -> void:
-	if health <= 0 and not $GPUParticles2D.emitting and sprite.modulate.a == 0.:
-		get_parent()._check_if_empty()
-		queue_free()
-			
+func _process(_delta: float) -> void:			
 	if dir == -1:
 		sprite.flip_h = true
 	else:
@@ -50,6 +46,8 @@ func hit() -> void:
 		$Target.visible = false
 		$GPUParticles2D.emitting = true
 		tween.tween_property($GPUParticles2D, "modulate:a", 0., 0.6)
+		get_parent()._check_if_empty()
+		tween.tween_callback(queue_free)
 	else:
 		for i in range(4):
 			tween.tween_property(sprite, "material:shader_parameter/mix_value", blink_high, 0.1)

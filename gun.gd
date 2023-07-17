@@ -39,16 +39,17 @@ func _process(_delta: float) -> void:
 		ammo_changed.emit()
 		can_shoot = false
 		$ShootTimer.start()
-		$ShootSFX.play()
+		#$ShootSFX.play()
 		
 		if bullet.is_colliding() and bullet.get_collider().has_method("hit"):
 			var enemy = bullet.get_collider()
-			enemy.hit()
 			
 			if enemy.health == 1:
 				Globals.ammo += enemy.ammo_boost
 				ammo_changed.emit()
-				
+									
+			enemy.hit()
+						
 		if Globals.ammo == 0:
 			var tween = get_tree().create_tween()
 			tween.tween_property($Camera2D, "zoom", Vector2(4., 4.), 4)
