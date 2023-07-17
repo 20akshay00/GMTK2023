@@ -6,3 +6,5 @@
 script = ExtResource("1_s1tur")
 
 [node name="SlowMoTimer" type="Timer" parent="."]
+wait_time = 1.5
+one_shot = true
