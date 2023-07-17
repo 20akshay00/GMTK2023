@@ -1,10 +1,17 @@
-[gd_scene load_steps=6 format=3 uid="uid://ccgt7cs60865p"]
+[gd_scene load_steps=8 format=3 uid="uid://ccgt7cs60865p"]
 
 [ext_resource type="Script" path="res://gun.gd" id="1_bo3j0"]
 [ext_resource type="Texture2D" uid="uid://b5vlq1m0ayqii" path="res://Art/gun_sprite.png" id="2_io4ov"]
 [ext_resource type="PackedScene" uid="uid://bn0dj4efotgc5" path="res://bullet.tscn" id="3_08tko"]
 [ext_resource type="AudioStream" uid="uid://bsdvwhx21bwsx" path="res://Sounds/shoot.wav" id="4_6nua3"]
 [ext_resource type="AudioStream" uid="uid://c3p230trfeunm" path="res://Sounds/hit.wav" id="5_0etrk"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_vdlxt"]
+height = 46.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_21sxy"]
+radius = 14.0
+height = 34.0
 
 [node name="Gun" type="RigidBody2D"]
 max_contacts_reported = 3
@@ -22,11 +29,6 @@ flip_h = true
 position = Vector2(-26, -7)
 scale = Vector2(1.04424, 1)
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
-position = Vector2(1, 0)
-scale = Vector2(0.450933, 0.450933)
-polygon = PackedVector2Array(-50, -38, 51.0054, -37.6996, 51, 35, -7, 35, -7, 21, -21, 21, -21, 5, -50, 5)
-
 [node name="ShootTimer" type="Timer" parent="."]
 wait_time = 0.1
 one_shot = true
@@ -42,6 +44,18 @@ one_shot = true
 
 [node name="SlowMotionCooldown" type="Timer" parent="."]
 one_shot = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(1, -8)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_vdlxt")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="."]
+position = Vector2(10, -1)
+shape = SubResource("CapsuleShape2D_21sxy")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+polygon = PackedVector2Array(-22, -14, -21, -16, -19, -17, -12, -17, -9, -17, 20, -17, 23, -16, 24, -12, 24, 13, 23, 15, 21.6231, 15, 19, 15, 13, 15, 1, 15, -1, 14, -2, 10, -4, 8, -7, 8, -9, 6, -9, 4, -11, 2, -13, 2, -18, 2, -21, 1, -22, -2)
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="body_exited" from="." to="." method="_on_body_exited"]
