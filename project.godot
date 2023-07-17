@@ -25,11 +25,11 @@ MusicPlayer="*res://music_player.tscn"
 
 window/size/viewport_width=1280
 window/size/viewport_height=720
-window/size/resizable=false
+window/stretch/mode="viewport"
 
 [gui]
 
-theme/custom_font="res://Fonts/new_font_variation.tres"
+theme/custom_font="res://Fonts/kenney_font_variation.tres"
 
 [input]
 

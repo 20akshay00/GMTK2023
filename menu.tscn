@@ -1,10 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://bqeof8pxp3j2d"]
+[gd_scene load_steps=5 format=3 uid="uid://bqeof8pxp3j2d"]
 
 [ext_resource type="Script" path="res://Menu.gd" id="1_p10mw"]
 [ext_resource type="Texture2D" uid="uid://b5vlq1m0ayqii" path="res://Art/gun_sprite.png" id="2_mlewj"]
 [ext_resource type="Texture2D" uid="uid://cmdhrn7rht7ry" path="res://Art/flyer_idle.png" id="3_mdlln"]
 [ext_resource type="Texture2D" uid="uid://cg8whhjklxjg1" path="res://Art/crawler_idle.png" id="4_0bkbu"]
-[ext_resource type="Texture2D" uid="uid://bvda5t32skqh2" path="res://Art/laser.png" id="5_we6j4"]
 
 [node name="Menu" type="Control"]
 layout_mode = 3
@@ -20,6 +19,10 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_left = -1.0
+offset_top = -10.0
+offset_right = -1.0
+offset_bottom = -10.0
 grow_horizontal = 2
 grow_vertical = 2
 color = Color(0.160784, 0.309804, 0.286275, 1)
@@ -68,63 +71,66 @@ offset_bottom = 43.0
 grow_horizontal = 2
 theme_override_font_sizes/font_size = 38
 text = "Untitled Gun Game"
+horizontal_alignment = 1
 
-[node name="Controls" type="Label" parent="."]
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.108
-anchor_top = 0.635
-anchor_right = 0.494
-anchor_bottom = 0.879
-offset_left = -0.240005
-offset_top = -0.200043
-offset_right = -0.320007
-offset_bottom = 0.119934
-grow_vertical = 0
+anchor_left = 0.04
+anchor_top = 0.199
+anchor_right = 0.431
+anchor_bottom = 0.949
+offset_left = -1.2
+offset_top = -0.280014
+offset_right = -6.10352e-05
+offset_bottom = -0.280029
+grow_vertical = 2
+
+[node name="Intro" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+text = "In this game
+you are the weapon"
+horizontal_alignment = 1
+
+[node name="HSeparator" type="HSeparator" parent="VBoxContainer"]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 2
+theme_override_constants/separation = 75
+
+[node name="Gun" type="TextureRect" parent="VBoxContainer"]
+texture_filter = 1
+layout_mode = 2
+size_flags_vertical = 3
+texture = ExtResource("2_mlewj")
+stretch_mode = 5
+
+[node name="HSeparator2" type="HSeparator" parent="VBoxContainer"]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 2
+theme_override_constants/separation = 75
+
+[node name="Controls" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
 theme_override_font_sizes/font_size = 30
 text = "W - Hop/Right Mouse
 A - Rotate Ccw
 D - Rotate cw
 S - Shoot/Left mouse"
 
-[node name="Gun" type="TextureRect" parent="."]
-texture_filter = 1
-layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.258
-anchor_top = 0.44
-anchor_right = 0.345
-anchor_bottom = 0.551
-offset_left = -0.240021
-offset_top = 0.199982
-offset_right = -55.6
-offset_bottom = -39.72
-scale = Vector2(2, 2)
-texture = ExtResource("2_mlewj")
-
-[node name="Intro" type="Label" parent="."]
-layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.119
-anchor_top = 0.254
-anchor_right = 0.485
-anchor_bottom = 0.353
-offset_left = -0.320007
-offset_top = 0.119995
-offset_right = 0.199951
-offset_bottom = -0.160004
-theme_override_font_sizes/font_size = 30
-text = "In this game
-you are the weapon"
-horizontal_alignment = 1
-
 [node name="Instructions" type="Label" parent="."]
-layout_mode = 0
-offset_left = 795.0
-offset_top = 198.0
-offset_right = 1172.0
-offset_bottom = 244.0
-theme_override_font_sizes/font_size = 20
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.553
+anchor_top = 0.246
+anchor_right = 0.987
+anchor_bottom = 0.339
+offset_left = 0.159973
+offset_top = 2.87999
+offset_right = -0.360107
+offset_bottom = 1.91998
+theme_override_font_sizes/font_size = 30
 text = "make your way through
 waves of enemies"
 horizontal_alignment = 1
@@ -134,53 +140,45 @@ texture_filter = 1
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.257
-anchor_top = 1.913
-anchor_right = 0.385
-anchor_bottom = 2.804
-offset_left = 0.111
-offset_top = 0.0019989
-offset_right = -0.145004
-offset_bottom = 0.0159912
+anchor_top = 1.606
+anchor_right = 0.402
+anchor_bottom = 2.566
+offset_left = 0.365021
+offset_top = -0.0559998
+offset_right = -0.109985
+offset_bottom = -0.0160217
 texture = ExtResource("3_mdlln")
 
 [node name="Crawler" type="TextureRect" parent="Instructions"]
 texture_filter = 1
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.631
-anchor_top = 2.0
-anchor_right = 0.737
-anchor_bottom = 2.63
-offset_left = 0.112991
-offset_top = -3.0
-offset_right = 0.15097
-offset_bottom = 0.0199966
+anchor_left = 0.596
+anchor_top = 1.632
+anchor_right = 0.714
+anchor_bottom = 2.303
+offset_left = 0.220032
+offset_top = -0.0320053
+offset_right = -0.269989
+offset_bottom = -0.0280151
 texture = ExtResource("4_0bkbu")
 
 [node name="Death" type="Label" parent="."]
-layout_mode = 0
-offset_left = 719.0
-offset_top = 390.0
-offset_right = 1240.0
-offset_bottom = 436.0
-theme_override_font_sizes/font_size = 20
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.562
+anchor_top = 0.558
+anchor_right = 0.976
+anchor_bottom = 0.717
+offset_left = -0.360046
+offset_top = 0.239929
+offset_right = -0.280151
+offset_bottom = -0.240051
+theme_override_font_sizes/font_size = 30
 text = "but you only last 
 until the final ammo 
 leaves your barrel"
 horizontal_alignment = 1
-
-[node name="Ammo" type="TextureRect" parent="Death"]
-layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.441
-anchor_top = 1.232
-anchor_right = 0.564
-anchor_bottom = 2.159
-offset_left = 0.238998
-offset_top = -0.00801086
-offset_right = 0.156006
-offset_bottom = 0.0289917
-texture = ExtResource("5_we6j4")
 
 [connection signal="pressed" from="MarginContainer/VBoxContainer/Play" to="." method="_on_play_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/Credits" to="." method="_on_credits_pressed"]

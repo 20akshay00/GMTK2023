@@ -21,7 +21,7 @@ func _on_gun_ammo_changed() -> void:
 
 func _on_gun_slowmo_started() -> void:
 	timer.start(1)
-	pass
+
 func _on_gun_slowmo_ended() -> void:
 	timer.stop()
 	var tween = get_tree().create_tween()

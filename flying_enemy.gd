@@ -46,7 +46,7 @@ func hit() -> void:
 		$Target.visible = false
 		$GPUParticles2D.emitting = true
 		tween.tween_property($GPUParticles2D, "modulate:a", 0., 0.6)
-		get_parent()._check_if_empty()
+		get_parent().reduce_count()
 		tween.tween_callback(queue_free)
 	else:
 		for i in range(4):

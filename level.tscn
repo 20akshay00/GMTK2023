@@ -233,6 +233,8 @@ texture = ExtResource("2_d88qy")
 
 [node name="Gun" parent="." instance=ExtResource("1_sgjly")]
 position = Vector2(575, 200)
+hop_strength = 500.0
+max_num_hops = 1
 metadata/_edit_group_ = true
 
 [node name="Camera2D" type="Camera2D" parent="Gun"]
@@ -326,16 +328,17 @@ one_shot = true
 
 [node name="WaveLabel" type="Label" parent="UI"]
 anchors_preset = -1
-anchor_left = 0.5
+anchor_left = 0.468
 anchor_top = 0.053
-anchor_right = 0.5
-anchor_bottom = 0.053
-offset_left = -20.0
-offset_right = 20.0
-offset_bottom = 17.0
+anchor_right = 0.532
+anchor_bottom = 0.097
+offset_left = 20.96
+offset_right = -20.96
+offset_bottom = -14.68
 grow_horizontal = 2
 theme_override_font_sizes/font_size = 25
 text = "Wave 1"
+horizontal_alignment = 1
 
 [node name="CrawlingSpawner" type="Node2D" parent="."]
 script = ExtResource("13_eloi8")

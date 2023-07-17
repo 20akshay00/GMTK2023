@@ -5,8 +5,8 @@ func _ready() -> void:
 	
 	if not MenuMusic.playing:
 		MenuMusic.play()
-		var tween = get_tree().create_tween()
-		tween.tween_property(MenuMusic, "volume_db", 0, 0.2)
+		# var tween = get_tree().create_tween()
+		# tween.tween_property(MenuMusic, "volume_db", 0, 0.2)
 	
 func _on_play_pressed() -> void:
 	var MenuMusic = MusicPlayer.get_node("MenuMusic")
