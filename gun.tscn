@@ -39,9 +39,6 @@ stream = ExtResource("4_6nua3")
 [node name="HitSFX" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("5_0etrk")
 
-[node name="SlowMotion" type="Timer" parent="."]
-one_shot = true
-
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(1, -8)
 rotation = 1.5708
@@ -57,4 +54,3 @@ polygon = PackedVector2Array(-22, -14, -21, -16, -19, -17, -12, -17, -9, -17, 20
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="body_exited" from="." to="." method="_on_body_exited"]
 [connection signal="timeout" from="ShootTimer" to="." method="_on_shoot_timer_timeout"]
-[connection signal="timeout" from="SlowMotion" to="." method="_on_slow_motion_timeout"]

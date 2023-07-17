@@ -17,7 +17,7 @@ config/icon="res://icon.svg"
 
 [autoload]
 
-Globals="*res://Globals/globals.gd"
+Globals="*res://Globals/globals.tscn"
 TransitionLayer="*res://transition_layer.tscn"
 MusicPlayer="*res://music_player.tscn"
 

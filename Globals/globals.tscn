@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://dt4h4hb7t8iul"]
+
+[ext_resource type="Script" path="res://Globals/globals.gd" id="1_s1tur"]
+
+[node name="globals" type="Node"]
+script = ExtResource("1_s1tur")
+
+[node name="SlowMoTimer" type="Timer" parent="."]

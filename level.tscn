@@ -389,6 +389,5 @@ wait_time = 2.0
 one_shot = true
 
 [connection signal="ammo_changed" from="Gun" to="UI" method="_on_gun_ammo_changed"]
-[connection signal="slowmo_ended" from="Gun" to="UI" method="_on_gun_slowmo_ended"]
-[connection signal="slowmo_started" from="Gun" to="UI" method="_on_gun_slowmo_started"]
+[connection signal="reset_slowmo" from="Gun" to="UI" method="_on_gun_reset_slowmo"]
 [connection signal="enemies_cleared" from="Enemies" to="." method="_on_enemies_enemies_cleared"]
