@@ -1,6 +1,8 @@
 extends CanvasLayer
 
 @onready var laser_label = $LaserCounter/VBoxContainer/Label
+@onready var enemy_label = $EnemyCounter/VBoxContainer/Label
+
 @onready var timerbar = $TextureProgressBar
 @onready var timer = $Timer
 
@@ -11,7 +13,8 @@ func _ready() -> void:
 	update_laser_text()
 	timerbar.max_value = Globals.slow_motion_limit
 	timerbar.value = timerbar.max_value
-		
+	enemy_label.text = "x 2"
+	
 func _process(_delta: float) -> void:
 	if not Globals.smtimer.is_paused() and can_update:
 		timerbar.value = Globals.smtimer.time_left
@@ -30,3 +33,6 @@ func _on_gun_reset_slowmo() -> void:
 	
 func _reset_update():
 	can_update = true
+
+func _on_enemies_enemy_killed(count) -> void:
+	enemy_label.text = str("x ", count)

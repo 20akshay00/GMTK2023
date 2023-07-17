@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://c0oeekfje51vb"]
+[gd_scene load_steps=18 format=3 uid="uid://c0oeekfje51vb"]
 
 [ext_resource type="PackedScene" uid="uid://ccgt7cs60865p" path="res://gun.tscn" id="1_sgjly"]
 [ext_resource type="Script" path="res://level.gd" id="1_sv2tl"]
@@ -10,6 +10,7 @@
 [ext_resource type="Script" path="res://UI.gd" id="10_8yhhq"]
 [ext_resource type="Texture2D" uid="uid://bvda5t32skqh2" path="res://Art/laser.png" id="10_60igf"]
 [ext_resource type="Texture2D" uid="uid://oyq4xudconm4" path="res://Art/ring.png" id="11_fyyul"]
+[ext_resource type="Texture2D" uid="uid://nylqmi5vwa88" path="res://Art/enemyicon.png" id="12_5kdla"]
 [ext_resource type="Script" path="res://FlyingSpawner.gd" id="12_7c2cl"]
 [ext_resource type="Texture2D" uid="uid://84h20wxp101r" path="res://Art/clock.png" id="12_q5ox6"]
 [ext_resource type="Script" path="res://CrawlingSpawner.gd" id="13_eloi8"]
@@ -277,9 +278,9 @@ grow_vertical = 0
 [node name="VBoxContainer" type="HBoxContainer" parent="UI/LaserCounter"]
 layout_mode = 1
 anchors_preset = -1
-anchor_right = 0.912
+anchor_right = 1.158
 anchor_bottom = 1.0
-offset_right = -27.9987
+offset_right = -48.3872
 
 [node name="TextureRect" type="TextureRect" parent="UI/LaserCounter/VBoxContainer"]
 layout_mode = 2
@@ -340,6 +341,37 @@ theme_override_font_sizes/font_size = 25
 text = "Wave 1"
 horizontal_alignment = 1
 
+[node name="EnemyCounter" type="Control" parent="UI"]
+layout_mode = 3
+anchor_left = 0.915
+anchor_top = 0.888
+anchor_right = 0.97
+anchor_bottom = 0.95
+grow_horizontal = 0
+grow_vertical = 0
+
+[node name="VBoxContainer" type="HBoxContainer" parent="UI/EnemyCounter"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.158
+anchor_bottom = 1.0
+offset_right = -48.3872
+
+[node name="TextureRect" type="TextureRect" parent="UI/EnemyCounter/VBoxContainer"]
+texture_filter = 1
+layout_mode = 2
+texture = ExtResource("12_5kdla")
+expand_mode = 2
+
+[node name="Label" type="Label" parent="UI/EnemyCounter/VBoxContainer"]
+texture_filter = 1
+layout_mode = 2
+theme_override_font_sizes/font_size = 25
+text = "x 15
+"
+horizontal_alignment = 1
+vertical_alignment = 2
+
 [node name="CrawlingSpawner" type="Node2D" parent="."]
 script = ExtResource("13_eloi8")
 
@@ -391,3 +423,4 @@ one_shot = true
 [connection signal="ammo_changed" from="Gun" to="UI" method="_on_gun_ammo_changed"]
 [connection signal="reset_slowmo" from="Gun" to="UI" method="_on_gun_reset_slowmo"]
 [connection signal="enemies_cleared" from="Enemies" to="." method="_on_enemies_enemies_cleared"]
+[connection signal="enemy_killed" from="Enemies" to="UI" method="_on_enemies_enemy_killed"]

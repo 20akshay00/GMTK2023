@@ -29,5 +29,7 @@ func generate_wave():
 	var tween = get_tree().create_tween()
 	tween.tween_property($UI/WaveLabel, "text",  str("Wave ", Globals.wave), 1)
 	
+	$UI/EnemyCounter/VBoxContainer/Label.text = str("x ", $Enemies.wave_count)
+	
 func _on_enemies_enemies_cleared() -> void:
 	generate_wave()
