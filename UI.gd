@@ -13,11 +13,9 @@ func _ready() -> void:
 	timerbar.value = timerbar.max_value
 		
 func _process(_delta: float) -> void:
-	if Globals.smtimer.time_left != 0 and can_update:
+	if not Globals.smtimer.is_paused() and can_update:
 		timerbar.value = Globals.smtimer.time_left
 		
-	print(timerbar.value)
-	
 func update_laser_text() -> void:
 	laser_label.text = str("x ", Globals.ammo)
 
@@ -27,7 +25,7 @@ func _on_gun_ammo_changed() -> void:
 func _on_gun_reset_slowmo() -> void:
 	can_update = false
 	var tween = get_tree().create_tween()
-	tween.tween_property(timerbar, "value", Globals.slow_motion_limit, 0.2)
+	tween.tween_property(timerbar, "value", Globals.slow_motion_limit, 0.1)
 	tween.finished.connect(_reset_update)
 	
 func _reset_update():

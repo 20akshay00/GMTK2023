@@ -65,7 +65,6 @@ func _process(_delta: float) -> void:
 	if (Input.is_action_just_pressed("rotate_ccw") or Input.is_action_just_pressed("rotate_cw")) and can_slowmo and not is_touching: 
 		start_slowmo()
 	elif (Input.is_action_just_released("rotate_ccw") or Input.is_action_just_released("rotate_cw")) and Engine.time_scale == 0.2:
-		Globals.smtimer.set_paused(true)
 		end_slowmo()
 		
 	if is_touching and Engine.time_scale == 1.0:
@@ -74,22 +73,24 @@ func _process(_delta: float) -> void:
 		Globals.smtimer.start(Globals.slow_motion_limit)
 	
 func start_slowmo() -> void:
-	Engine.time_scale = 0.2
 	Globals.smtimer.set_paused(false)
-	
+	Engine.time_scale = 0.2	
 	rotation_strength = rotation_strength_low
 	$Camera2D/SlowMoCanvas.slowmo_effect(0.15, 0.5)
 	AudioServer.playback_speed_scale = audio_speed_low
 	
 func end_slowmo() -> void:
+	Globals.smtimer.set_paused(true)
 	Engine.time_scale = 1.0
 	rotation_strength = rotation_strength_high
 	$Camera2D/SlowMoCanvas.slowmo_effect(0.3, 1.)
 	AudioServer.playback_speed_scale = audio_speed_high
 			
-func _on_body_entered(_body: Node) -> void:
-	is_touching = true
-	num_hops = max_num_hops
+func _on_body_entered(body: Node) -> void:
+	if not body.has_node("Target"):
+		is_touching = true
+		num_hops = max_num_hops
+		
 	
 func _on_body_exited(_body: Node) -> void:
 	is_touching = false
