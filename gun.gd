@@ -36,7 +36,7 @@ func _process(_delta: float) -> void:
 		ammo_changed.emit()
 		can_shoot = false
 		$ShootTimer.start()
-		#$ShootSFX.play()
+		$ShootSFX.play()
 		
 		if bullet.is_colliding() and bullet.get_collider().has_method("hit"):
 			var enemy = bullet.get_collider()

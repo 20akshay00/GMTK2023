@@ -1,9 +1,10 @@
-[gd_scene load_steps=16 format=3 uid="uid://dltdcfwnvoulq"]
+[gd_scene load_steps=14 format=3 uid="uid://dltdcfwnvoulq"]
 
 [ext_resource type="Shader" path="res://white_overlay.gdshader" id="1_71sqr"]
 [ext_resource type="Script" path="res://flying_enemy.gd" id="2_4fwuj"]
 [ext_resource type="Texture2D" uid="uid://dc4t4dfjwlroy" path="res://Art/target.png" id="3_vc1wc"]
 [ext_resource type="Texture2D" uid="uid://bc0geykvqej17" path="res://Art/flyer.png" id="4_n8ipo"]
+[ext_resource type="PackedScene" uid="uid://bffr21j0ydj5i" path="res://death_effect.tscn" id="5_14tr1"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_4656f"]
 shader = ExtResource("1_71sqr")
@@ -58,28 +59,6 @@ animations = [{
 "speed": 6.0
 }]
 
-[sub_resource type="Curve" id="Curve_51cry"]
-_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
-point_count = 2
-
-[sub_resource type="CurveTexture" id="CurveTexture_vw5kt"]
-curve = SubResource("Curve_51cry")
-
-[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_riwxt"]
-lifetime_randomness = 0.2
-particle_flag_disable_z = true
-spread = 180.0
-gravity = Vector3(0, 0, 0)
-initial_velocity_min = 50.0
-initial_velocity_max = 200.0
-orbit_velocity_min = 0.0
-orbit_velocity_max = 0.0
-damping_min = 50.0
-damping_max = 50.0
-scale_min = 3.0
-scale_max = 8.0
-scale_curve = SubResource("CurveTexture_vw5kt")
-
 [node name="FlyingEnemy" type="CharacterBody2D"]
 material = SubResource("ShaderMaterial_4656f")
 collision_layer = 3
@@ -104,9 +83,4 @@ sprite_frames = SubResource("SpriteFrames_qrl7b")
 animation = &"move"
 autoplay = "move"
 
-[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
-emitting = false
-amount = 20
-process_material = SubResource("ParticleProcessMaterial_riwxt")
-lifetime = 0.6
-one_shot = true
+[node name="GPUParticles2D" parent="." instance=ExtResource("5_14tr1")]
